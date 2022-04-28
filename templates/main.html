@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Final Project 1 Deployment</title>
+</head>
+
+<body>
+
+    <div class="form">
+        <h1>Prediksi Harga Taksi</h1>
+        <b>Petunjuk Pengisian :</b>
+        <li>Asal dan Tujuan diisi dengan nomor 0 sampai 11 dengan rincian : `0. Back Bay`, `1. Beacon Hill`,
+            `2. Boston University`, `3. Fenway`, `4. Financial District`, `5. Haymarket Square`, `6. North End`,
+            `7. North Station`, `8. Northeastern University`, `9. South Station`, `10. Theatre District`, `11. West End`
+        </li>
+        <li>Jenis Taksi diisi dengan memilih nomor 0 atau 1 dengan rincian: `0. Lyft` dan `1. Uber`</li>
+        <li>Merek diisi dengan nomor antara 0 sampai 12 dengan rincian: `0. Black`, `1. Black SUV`, `2. Lux`,
+            `3. Lux Black`, `4. Lux Black XL`, `5. Lyft`, `6. Lyft XL`, `7. Shared`, `8. Taxi`, `9. UberPool`,`10.
+            UberX`,
+            `11. UberXL`, `12. WAV`
+        </li>
+        <li>Jarak diisi sesuai dengan angka yang ingin diprediksi atau ditempuh</li>
+        <li>surge multiplier diisi dengan angka minimal 0 sampai 6</li>
+
+        <form action="{{ url_for('predict') }}" method="post">
+            <input type="text" name="Asal" placeholder="Asal" required="required" />
+            <input type="text" name="Tujuan" placeholder="Tujuan" required="required" />
+            <input type="text" name="Jenis_Taksi" placeholder="Jenis Taksi" required="required" />
+            <input type="text" name="Merek" placeholder="Merek" required="required" />
+            <input type="text" name="Jarak" placeholder="Jarak" required="required" />
+            <input type="text" name="Surge_multiplier" placeholder="Surge Multiplier" required="required" />
+
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+
+        <b class="message">{{ prediction_text }}</b>
+    </div>
+
+</body>
+
+</html>
